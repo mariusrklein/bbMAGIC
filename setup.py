@@ -15,6 +15,6 @@ setuptools.setup(
     install_requires=[
         "scanpy>=1.9.1",
         "bbknn",
-        "magic"
+        "magic-impute"
     ]
 )

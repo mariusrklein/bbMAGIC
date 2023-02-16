@@ -17,7 +17,7 @@ The following graph compares the effect of applying bbMAGIC to the data, followe
 The Python package can be downloaded from this GitLab repo via pip. Just run this command in your Terminal:
 
 ```
-$ pip install git@git.embl.de:mklein/bbmagic.git
+$ pip install git+https://git.embl.de/mklein/bbmagic.git
 ```
 
 It installs the package and all dependencies.
@@ -59,4 +59,6 @@ df_imputed = bm.bb_magic_array(
     random_state=1                    # for reproducibility
 )
 ```
+
+There are more possible parameters to both functions which are all documented in the [source file](bbmagic/__init__.py).
 
