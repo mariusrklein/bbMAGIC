@@ -27,7 +27,8 @@ It installs the package and all dependencies.
 There is a high-level function to perform imputation which works similar to scanpy.external.pp.magic. 
 
 ```
-import bbknn_magic as bm
+import scanpy
+import bbmagic as bm
 
 adata = sc.read("/path/to/your/adata.h5ad")
 # data should be normalized to a fixed ion count and log-transformed
@@ -36,12 +37,15 @@ sc.pp.log1p(adata)
 
 adata_imputed = bm.bb_magic(
     adata, 
-    batch_key = 'batch',              # column name of the batch information in adata.obs
-    neighbors_within_batch = 3,       # bbknn
-    n_pcs = 100,                      # bbknn
-    t=2,                              # magic
-    copy=True,                        # creates new adata instead of overwriting adata.X
-    random_state=1                    # for reproducibility
+    batch_key = 'batch',              # bbknn: column name of the batch information in adata.obs
+    neighbors_within_batch = 3,       # bbknn: number of neighbors per batch used for knn
+    n_pcs = 100,                      # bbknn: number of principal components used for knn
+    copy=True,                        # creates new adata instead of overwriting adata.X/layer inplace
+    layer_from='ctrl',                # takes data from adata.layer['ctrl'], uses adata.X if None
+    layer_to='imputed',               # stores imputed data in adata_imputed.layer['imputed'], 
+                                      # uses adata_imputed.X if None
+    t=2,                              # magic: diffusion time step determines extent of smoothing
+    random_state=1                    # magic: for reproducibility
 )
 
 
@@ -52,11 +56,11 @@ Additionally, also numpy arrays and pandas DataFrames can be imputed. For them, 
 ```
 df_imputed = bm.bb_magic_array(
     adata.to_df(), 
-    batch_array = adata.obs['batch'], # bbknn
-    neighbors_within_batch = 3,       # bbknn
-    n_pcs = 100,                      # bbknn
-    t=2,                              # magic
-    random_state=1                    # for reproducibility
+    batch_array = adata.obs['batch'], # bbknn: array or pd.Series containing batch information
+    neighbors_within_batch = 3,       # bbknn: number of neighbors per batch used for knn
+    n_pcs = 100,                      # bbknn: number of principal components used for knn
+    t=2,                              # magic: diffusion time step determines extent of smoothing
+    random_state=1                    # magic: for reproducibility
 )
 ```
 
