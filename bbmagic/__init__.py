@@ -159,7 +159,7 @@ def bb_magic_array(
     adata.obs['batch'] = np.array(batch_array)
     
     # perform imputation and batch correction 
-    impute_MAGIC_with_BBKNN(
+    bb_magic(
         adata=adata,
         batch_key='batch',
         neighbors_within_batch=neighbors_within_batch,
