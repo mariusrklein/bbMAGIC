@@ -17,7 +17,7 @@ The following graph compares the effect of applying bbMAGIC to the data, followe
 The Python package can be downloaded from this GitLab repo via pip. Just run this command in your Terminal:
 
 ```
-$ pip install git+https://git.embl.de/mklein/bbmagic.git
+$ pip install git+https://github.com/mariusrklein/bbMAGIC.git
 ```
 
 It installs the package and all dependencies.

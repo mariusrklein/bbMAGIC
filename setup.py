@@ -9,7 +9,7 @@ setuptools.setup(
     author_email="marius.klein@embl.de",
     packages=setuptools.find_packages(),
     description="This package provides functions for the batch integration of single-cell omics data.",
-    url="https://git.embl.de/mklein/bbmagic",
+    url="https://github.com/mariusrklein/bbMAGIC",
     license='MIT',
     python_requires='>=3.0',
     install_requires=[
